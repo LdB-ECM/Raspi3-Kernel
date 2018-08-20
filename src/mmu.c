@@ -3,12 +3,6 @@
 #include "headers/mbox.h"
 #include "headers/mmu.h"
 
-extern void semaphore_inc(uint32_t* sem);    // Code is in start.S
-extern void semaphore_dec(uint32_t* sem);	 // Code is in start.S
-
-
-volatile int mmu_loaded = 0;
-
 /* REFERENCE FOR STAGE 1 NEXT LEVEL ENTRY */
 /* ARMv8-A_Architecture_Reference_Manual_(Issue_A.a).pdf  D5-1776 */
 typedef enum {
@@ -258,7 +252,6 @@ void mmu_init(void)
 		(1 << 0);     // set M, enable MMU
 	asm volatile ("msr sctlr_el1, %0; isb" : : "r" (r));
 
-	mmu_loaded += 1;
 }
 
 

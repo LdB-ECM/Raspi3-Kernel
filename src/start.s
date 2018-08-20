@@ -131,7 +131,7 @@ exit_el1:
 	beq	2f		//Core 2 jump to label 2
 	cmp	x1, #3		//Check for Core 3
 	beq	3f		//Core 3 jump to label 3
-	b 	_hang		//I don't know why this would actually happen
+	b 	_hang		//I dont know why this would actually happen
 
 //Core 1 main
 1:

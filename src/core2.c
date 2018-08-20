@@ -1,9 +1,10 @@
-#include "headers/project.h"
 #include "headers/mmu.h"
+#include "headers/project.h"
 
 void core2_main()
 {
 	mmu_init();   // Set mmu up on core 2
+	core2_ready = true;
 
 	printf("[CORE 2] [INFO] Hello From CORE 2!\n");
 	

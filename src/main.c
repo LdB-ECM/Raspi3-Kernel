@@ -22,9 +22,6 @@ void main()
 
 	start_other_3_cores();   // Each start will apply mmu to that core
 	
-	printf("Wait on MMU on 4 cores\r\n");
-
-	while (mmu_loaded != 4);  // Wait for all 4 cores to load MMU
 
 	printf("4 cores with MMU online\r\n");
 	semaphore_inc(&check_hello); // lock hello semaphore .. if MMU is not working it will lock here
