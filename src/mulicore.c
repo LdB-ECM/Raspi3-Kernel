@@ -5,8 +5,10 @@ void start_other_3_cores()
 	asm(	"mov	x1, #0xe0\n"\
 		"mov    x2, #0x80000\n"\
 		"str    x2, [x1]\n"\
+		"sev\n"\
 		"mov	x1, #0xe8\n"\
 		"str	x2, [x1]\n"\
+		"sev\n"\
 		"mov	x1, 0xf0\n"\
 		"str	x2, [x1]\n"\
 		"sev");

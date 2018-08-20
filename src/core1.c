@@ -1,7 +1,11 @@
 #include "headers/project.h"
+#include "headers/mmu.h"
 
 void core1_main()
 {
+	mmu_init();				// Set MMU up on core 1
+
+
 	printf("[CORE 1] [INFO] Hello from CORE 1!\n");
 	while(1)
 	{
