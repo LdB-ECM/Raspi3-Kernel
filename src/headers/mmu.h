@@ -23,13 +23,14 @@ extern "C" {									// Put extern C directive wrapper around
 					 MAIR(0xff, MT_NORMAL) | \
 					 MAIR(0xbb, MT_NORMAL_WT))
 
-
-extern volatile int mmu_loaded;
-
 void init_page_table (void);
 
 void mmu_init (void);
 uint64_t virtualmap (uint32_t phys_addr, uint8_t memattrs);
+
+
+extern void semaphore_inc(uint32_t* sem);    // Code is in start.S
+extern void semaphore_dec(uint32_t* sem);	 // Code is in start.S
 
 #ifdef __cplusplus								// If we are including to a C++ file
 }												// Close the extern C directive wrapper
