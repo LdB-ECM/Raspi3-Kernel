@@ -3,8 +3,8 @@
 
 void core2_main()
 {
+	*core2_ready = true;
 	mmu_init();   // Set mmu up on core 2
-	core2_ready = true;
 
 	printf("[CORE 2] [INFO] Hello From CORE 2!\n");
 	

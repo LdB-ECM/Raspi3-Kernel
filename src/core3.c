@@ -6,8 +6,8 @@
 
 void core3_main()
 {
+	*core3_ready = true;
 	mmu_init();   // Set mmu up on core 3
-	core3_ready = true;
 
 	while(1)
 	{

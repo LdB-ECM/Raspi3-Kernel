@@ -1,9 +1,13 @@
 #include "headers/project.h"
 #include "headers/mmu.h"
 
-bool core1_ready = false;
-bool core2_ready = false;
-bool core3_ready = false;
+bool core_state[4] = { 0 };
+
+volatile bool* core0_ready = &core_state[0];
+volatile bool* core1_ready = &core_state[1];
+volatile bool* core2_ready = &core_state[2];
+volatile bool* core3_ready = &core_state[3];
+
 
 void start_other_3_cores()
 {
@@ -12,20 +16,19 @@ void start_other_3_cores()
 		"str    x2, [x1]\n"\
 		"sev\n");
 	printf("waiting on core1\n");
-	volatile bool* p = &core1_ready;
-	while (*p == false) {};
+	while (*core1_ready == false) {};
 	asm("mov	x1, #0xe8\n"\
 		"mov    x2, #0x80000\n"\
 		"str	x2, [x1]\n"\
 		"sev\n");
 	printf("waiting on core2\n");
-	while (core2_ready == false) {};
+	while (*core2_ready == false) {};
 	asm("mov	x1, 0xf0\n"\
 		"mov    x2, #0x80000\n"\
 		"str	x2, [x1]\n"\
 		"sev");
 	printf("waiting on core2\n");
-	while (core3_ready == false) {};
+	while (*core3_ready == false) {};
 }
 
 /*int core_execute(uint8_t core_num, void (*func)())

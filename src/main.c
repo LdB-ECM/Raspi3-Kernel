@@ -11,9 +11,8 @@ void main()
 	//uart_init();
 	lfb_init();
 
-	// Start mmu on Core0
+	// Create mmu table on Core0
 	init_page_table();
-	mmu_init();
 
 	dynamic_memory_alloc_init();
 	console_init();	
@@ -21,7 +20,8 @@ void main()
 
 
 	start_other_3_cores();   // Each start will apply mmu to that core
-	
+	mmu_init();  // Now turn MMU on core 0
+	*core0_ready = true;
 
 	printf("4 cores with MMU online\r\n");
 	semaphore_inc(&check_hello); // lock hello semaphore .. if MMU is not working it will lock here
