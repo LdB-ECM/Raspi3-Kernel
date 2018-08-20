@@ -1,6 +1,9 @@
 #ifndef MBOX_H
 #define MBOX_H
 
+#include "stdbool.h"
+#include "stdint.h"
+
 /* a properly aligned buffer */
 extern volatile uint32_t mailbox[36];
 
